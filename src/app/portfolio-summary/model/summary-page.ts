@@ -1,7 +1,7 @@
 import { Position } from "./position";
 
 export interface SummaryPage{
- customerName?: string;
+ customerName?: string | undefined;
  portfolioNumber?:  number;
  portfolioValue?: number;
  currentPerformance?: string;

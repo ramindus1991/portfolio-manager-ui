@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,6 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
 import {TableModule} from 'primeng/table';
 
 import { TabViewModule } from 'primeng/tabview';
+import { AuthorizedRequestHttpInterceptor } from './common/interceptor/authorized-request.interceptor';
+import { DialogModule } from 'primeng/dialog';
+import { AddTradePopupComponent } from './add-trade-popup/add-trade-popup.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+
+import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 
 
 
@@ -24,7 +33,8 @@ import { TabViewModule } from 'primeng/tabview';
   declarations: [
     AppComponent,
     PortfolioSummaryComponent,
-    LoginComponent
+    LoginComponent,
+    AddTradePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +46,17 @@ import { TabViewModule } from 'primeng/tabview';
     PanelModule,InputTextModule,
     HttpClientModule,
     TableModule,
-    TabViewModule
+    TabViewModule,DialogModule,
+    DynamicDialogModule,
+    DropdownModule,
+    RadioButtonModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizedRequestHttpInterceptor, multi: true },
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

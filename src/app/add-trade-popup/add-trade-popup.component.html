@@ -1,0 +1,44 @@
+<form (ngSubmit)="onsubmit()" [formGroup]="addTradeForm">
+
+ <p-dropdown formControlName="intrument" [options]="intruments" optionLabel="name" placeholder="Select a Intrunment"></p-dropdown>
+ <br/>
+
+ <br/> 
+
+ <div class="flex flex-wrap gap-3">
+ <div class="flex align-items-center">
+     Trade Type
+ </div>
+ 
+ <div class="flex align-items-center">
+     <p-radioButton name="Buy" value="Buy" formControlName="tradeType" inputId="ingredient1"></p-radioButton>
+     <label for="ingredient1" class="ml-2">Buy</label>
+ </div>
+ 
+ <div class="flex align-items-center">
+     <p-radioButton name="Sell" value="Sell" formControlName="tradeType" inputId="ingredient2"></p-radioButton>
+     <label for="ingredient2" class="ml-2">Sell</label>
+ </div>
+ </div>
+ <br/> 
+ <div class="d-flex">
+  <div>Units</div>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+ <input type="text" pInputText formControlName="unit"/>
+</div>
+<br>
+ <p-panel >
+  <div>Current portfolio value</div>
+  <br>
+  <div>New portfolio value</div>
+  <br>
+  <div>Diffrent</div>
+</p-panel>
+<br/>
+<button pButton type="submit" label="Submit" [disabled]="!addTradeForm.valid"></button>
+
+
+<br/>
+
+
+</form>

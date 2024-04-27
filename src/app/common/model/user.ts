@@ -1,4 +1,4 @@
 export interface User{
- accessToken: string;
- customerName: string
+ accessToken?: string | undefined;
+ customerName?: string | undefined;
 }

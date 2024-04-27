@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Validators,FormControl,FormGroup } from '@angular/forms';
 import { Button } from 'primeng/button';
-import { LoginService } from '../common/service/LoginService';
 import { Router } from '@angular/router';
 
 
@@ -17,11 +16,15 @@ export class LoginComponent implements OnInit {
     submitted = false;
     constructor(
       private http: HttpClient,
-      private loginService: LoginService,
       private router: Router
     ) { }
     
     ngOnInit() {
+        if(!!localStorage.getItem("data1")){
+        
+          this.router.navigate(['summary']);
+        }
+
         this.loginForm = new FormGroup({
             'login': new FormControl('', Validators.required),
             'password': new FormControl('', Validators.required)
@@ -32,8 +35,12 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
 
         this.http.get<any>('http://localhost:3000/login').subscribe(data => {
-          this.loginService.user = {accessToken: data.accessToken, customerName: data.customerName};
+          localStorage.setItem("data1", data.accessToken);
+          localStorage.setItem("data2", data.customerName);
           this.router.navigate(['summary']);
+
+
+
         })
     }
 }

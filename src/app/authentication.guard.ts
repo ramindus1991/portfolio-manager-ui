@@ -4,21 +4,18 @@ import { ActivatedRouteSnapshot, CanActivate, NavigationExtras, Router, RouterSt
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginService } from './common/service/LoginService';
 ;
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationGuard implements CanActivate {
   constructor(
     private readonly router: Router,
-    private readonly location: Location,
-    private readonly loginService: LoginService
-
+    private readonly location: Location
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
 
-    if(!!this.loginService.user) {
+    if(!!localStorage.getItem("data1") ) {
       return true;
     }
 
